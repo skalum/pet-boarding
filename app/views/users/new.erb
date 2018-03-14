@@ -1,0 +1,25 @@
+<h1>Sign up for Pet Sitter!</h1>
+
+<form method="post" action="/signup">
+  <section>
+    <input id="username" type="text" name="user[username]" placeholder="Username" required><br>
+    <input id="password" type="password" name="user[password]" placeholder="Password" required><br>
+  </section>
+
+  <section>
+    <p>
+      <input id="name" type="text" name="user[name]" placeholder="Name" required><br>
+      <input id="email" type="email" name="user[email]" placeholder="E-mail Address" required><br>
+    </p>
+  </section>
+
+  <section>
+  <p>Are you a pet owner or a pet sitter?</p>
+
+  <p>
+    <input type="radio" name="user[type]" value="Owner"> Owner<br>
+    <input type="radio" name="user[type]" value="Sitter"> Sitter<br>
+  </p>
+
+  <input type="submit" id="submit_button" value="Sign Up!">
+</form>

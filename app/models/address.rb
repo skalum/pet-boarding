@@ -6,7 +6,11 @@ class Address < ActiveRecord::Base
   belongs_to :user
 
   after_initialize do |address|
-    address.update(Address.lookup(address.line_1))
+    if new_address = Address.lookup(address.line_1)
+      return new_address
+    else
+      return address
+    end
   end
 
   private
