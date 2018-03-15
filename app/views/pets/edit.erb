@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>New pet</title>
+    <title>Edit: <%= @pet.name %></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="css/form-validation.css" rel="stylesheet">
@@ -14,18 +14,20 @@
 
     <div class="container">
       <div class="py-5 text-center">
-        <h2>New pet form</h2>
-        <p class="lead">Create a new pet below.</p>
+        <h2>Edit pet</h2>
+        <p class="lead">Edit <%= @pet.name %> below.</p>
       </div>
 
       <div class="row justify-content-md-center">
         <div class="col-md-8">
           <h4 class="mb-3">Information</h4>
-          <form class="needs-validation" novalidate method="post" action="/pets">
+          <form class="needs-validation" novalidate method="post" action="/pets/<%= @pet.id %>">
+            <input id="hidden" type="hidden" name="_method" value="patch">
+
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="pet[name]" placeholder="" value="" required>
+                <input type="text" class="form-control" id="name" name="pet[name]" placeholder="" value="<%= @pet.name %>" required>
                 <div class="invalid-feedback">
                   Valid name is required.
                 </div>
@@ -35,7 +37,7 @@
             <div class="mb-3">
               <label for="species">Species</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="species" name="pet[species]" placeholder="Cat" required>
+                <input type="text" class="form-control" id="species" name="pet[species]" placeholder="Cat" value="<%= @pet.species %>" required>
                 <div class="invalid-feedback" style="width: 100%;">
                   Your pet's species is required.
                 </div>
@@ -45,7 +47,7 @@
             <div class="mb-3">
               <label for="dob">Date of Birth</label>
               <div class="input-group">
-                <input type="date" class="form-control" id="dob" name="pet[dob]" required>
+                <input type="date" class="form-control" id="dob" name="pet[dob]" value="<%= @pet.dob %>" required>
                 <div class="invalid-feedback" style="width: 100%;">
                   Your pet's DOB is required.
                 </div>
@@ -54,7 +56,7 @@
 
             <div class="mb-3">
               <label for="feeding">Feeding regimen</label>
-              <textarea class="form-control" id="feeding" rows="5" name="pet[feeding_regimen]" placeholder="" required></textarea>
+              <textarea class="form-control" id="feeding" rows="5" name="pet[feeding_regimen]" placeholder="" required><%= @pet.feeding_regimen %></textarea>
               <div class="invalid-feedback">
                 Please enter a valid feeding regimen.
               </div>
@@ -62,15 +64,17 @@
 
             <div class="mb-3">
               <label for="medication">Medication regimen</label>
-              <textarea class="form-control" id="medication" name="pet[medication_regimen]" placeholder=""></textarea>
+              <textarea class="form-control" id="medication" name="pet[medication_regimen]" placeholder=""><%= @pet.medication_regimen %></textarea>
             </div>
 
             <div class="mb-3">
               <label for="other">Other notes</label>
-              <textarea class="form-control" id="other" name="pet[other_notes]" placeholder=""></textarea>
+              <textarea class="form-control" id="other" name="pet[other_notes]" placeholder=""><%= @pet.other_notes %></textarea>
             </div>
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Create pet</button>
+            <button class="btn btn-primary" type="submit">Save pet</button>
+
+            <a class="btn btn-danger" href="/pets/<%= @pet.id %>/delete" role="button">Delete pet</a>
           </form>
         </div>
       </div>
