@@ -5,17 +5,18 @@ require 'smartystreets_ruby_sdk/us_street/lookup'
 class Address < ActiveRecord::Base
   belongs_to :user
 
-  after_initialize do |address|
-    if new_address = Address.lookup(address.line_1)
-      return new_address
-    else
-      return address
+  def correct_address
+    if new_address = Address.lookup(self)
+      self.update(new_address)
+      return true
     end
+
+    return false
   end
 
   private
 
-  def self.lookup(address_string)
+  def self.lookup(address)
     auth_id = '5589b297-75d7-5e8e-5360-5a1793fec31c'
 		auth_token = '65abkDxmKjTuDCWT37Rz'
 
@@ -24,7 +25,10 @@ class Address < ActiveRecord::Base
     client = SmartyStreets::ClientBuilder.new(credentials).build_us_street_api_client
 
     lookup = SmartyStreets::USStreet::Lookup.new
-    lookup.street = address_string
+    lookup.street = address.line_1
+    lookup.city = address.city
+    lookup.state = address.state
+    lookup.zipcode = address.zip
 
     begin
 			client.send_lookup(lookup)

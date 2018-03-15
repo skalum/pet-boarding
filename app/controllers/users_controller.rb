@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       user = User.create(params[:user])
+      addr = Address.create(params[:address])
+      addr.correct_address
+      
       session[:user_id] = user.id
       redirect '/home'
     else
@@ -26,12 +29,17 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    if @user
-      erb :'users/show'
+  get '/home' do
+    if logged_in?
+      if current_user.class == Owner
+        @owner = current_user
+        erb :'users/owners/dashboard'
+      elsif current_user.class == Sitter
+        @sitter = current_user
+        erb :'users/sitters/dashboard'
+      end
     else
-      redirect '/tweets'
+      redirect '/login'
     end
   end
 
