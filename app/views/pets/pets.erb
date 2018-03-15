@@ -26,15 +26,15 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="/home">
+                <a class="nav-link" href="/home">
                   <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
+                  Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pets">
+                <a class="nav-link active" href="/pets">
                   <span data-feather="gitlab"></span>
-                  Pets
+                  Pets <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -48,9 +48,37 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+            <h1 class="h2">Pets</h1>
           </div>
+
+          <% if !current_user.pets.empty? %>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Species</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% current_user.pets.each do |pet| %>
+                  <tr>
+                    <td><%= pet.name %></td>
+                    <td><%= pet.species %></td>
+                    <td><%= pet.age %> yr</td>
+                    <td><a href="/pets/<%= pet.id %>/edit">Edit</td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <a class="btn btn-primary" href="/pets/new" role="button">Create new pet</a>
+          <% else %>
+            <div class="alert alert-primary" role="alert">
+              You have no pets. <a href="/pets/new" class="alert-link">Create one now!</a>
+            </div>
+          <% end %>
         </main>
       </div>
     </div>
