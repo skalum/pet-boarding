@@ -24,7 +24,7 @@ class PetsController < ApplicationController
     end
   end
 
-  get 'pets/:id' do
+  get '/pets/:id' do
     if logged_in?
       @pet = Pet.find_by(id: params[:id])
       if @pet && current_user.class == Owner && current_user.pets.include?(@pet)
