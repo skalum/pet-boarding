@@ -40,10 +40,10 @@ class PetsController < ApplicationController
   get '/pets/:id/edit' do
     if logged_in?
       @pet = Pet.find_by(id: params[:id])
-      if current_user.class == Owner && current_user.pets.include?(@pet)
+      if @pet && current_user.class == Owner && current_user.pets.include?(@pet)
         erb :'pets/edit'
       else
-        redirect '/pets'
+        redirect "/pets/#{params[:id]}"
       end
     else
       redirect '/login'
@@ -53,10 +53,10 @@ class PetsController < ApplicationController
   get '/pets/:id/delete' do
     if logged_in?
       @pet = Pet.find_by(id: params[:id])
-      if current_user.class == Owner && current_user.pets.include?(@pet)
+      if @pet && current_user.class == Owner && current_user.pets.include?(@pet)
         erb :'pets/delete'
       else
-        redirect '/pets'
+        redirect "/pets/#{params[:id]}"
       end
     else
       redirect '/login'
@@ -82,9 +82,9 @@ class PetsController < ApplicationController
       pet = Pet.find_by(id: params[:id])
       if pet && current_user.class == Owner && current_user.pets.include?(pet)
         pet.update(params[:pet])
-        redirect "/pets/#{pet.id}"
+        redirect "/pets/#{params[:id]}"
       else
-        redirect "/pets/#{pet.id}/edit"
+        redirect "/pets/#{params[:id]}/edit"
       end
     else
       redirect '/login'
@@ -98,7 +98,7 @@ class PetsController < ApplicationController
         pet.delete
         redirect '/pets'
       else
-        redirect "/pets/#{pet.id}"
+        redirect "/pets/#{params[:id]}"
       end
     else
       redirect '/login'

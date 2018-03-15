@@ -8,4 +8,5 @@ use Rack::MethodOverride
 
 use UsersController
 use PetsController
+use AppointmentsController
 run ApplicationController
