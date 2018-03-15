@@ -67,11 +67,11 @@
                     <dd><%= @pet.dob.strftime("%m/%d/%Y") %>, making her <%= @pet.age %> years old!</dd>
                     <dt>Feeding Regimen</dt>
                     <dd><%= @pet.feeding_regimen %></dd>
-                    <% if @pet.medication_regimen %>
+                    <% if @pet.medication_regimen != ""%>
                       <dt>Medication Regimen</dt>
                       <dd><%= @pet.medication_regimen %></dd>
                     <% end %>
-                    <% if @pet.other_notes %>
+                    <% if @pet.other_notes != ""%>
                       <dt>Other notes</dt>
                       <dd><%= @pet.other_notes %></dd>
                     <% end %>
@@ -80,8 +80,8 @@
               </div>
             </div>
           </div>
-          <a class="btn btn-primary" href="/<%= @pet.id %>/edit" role="button">Edit</a>
-          <a class="btn btn-danger" href="/<%= @pet.id %>/delete" role="button">Delete</a>
+          <a class="btn btn-primary" href="/pets/<%= @pet.id %>/edit" role="button">Edit</a>
+          <a class="btn btn-danger" href="/pets/<%= @pet.id %>/delete" role="button">Delete</a>
         </main>
       </div>
     </div>

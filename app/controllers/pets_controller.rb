@@ -50,6 +50,19 @@ class PetsController < ApplicationController
     end
   end
 
+  get '/pets/:id/delete' do
+    if logged_in?
+      @pet = Pet.find_by(id: params[:id])
+      if current_user.class == Owner && current_user.pets.include?(@pet)
+        erb :'pets/delete'
+      else
+        redirect '/pets'
+      end
+    else
+      redirect '/login'
+    end
+  end
+
   post '/pets' do
     if logged_in?
       pet = Pet.create(params[:pet])
@@ -69,9 +82,23 @@ class PetsController < ApplicationController
       pet = Pet.find_by(id: params[:id])
       if pet && current_user.class == Owner && current_user.pets.include?(pet)
         pet.update(params[:pet])
-        redirect "pets/#{pet.id}"
+        redirect "/pets/#{pet.id}"
       else
         redirect "/pets/#{pet.id}/edit"
+      end
+    else
+      redirect '/login'
+    end
+  end
+
+  delete '/pets/:id/delete' do
+    if logged_in?
+      pet = Pet.find_by(id: params[:id])
+      if pet && current_user.class == Owner && current_user.pets.include?(pet)
+        pet.delete
+        redirect '/pets'
+      else
+        redirect "/pets/#{pet.id}"
       end
     else
       redirect '/login'
