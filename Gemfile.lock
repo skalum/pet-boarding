@@ -89,7 +89,7 @@ GEM
       activerecord (>= 3.2)
       sinatra (>= 1.0)
     smartystreets_ruby_sdk (5.5.4)
-    sqlite3 (1.4.0)
+    sqlite3 (1.3.13)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -123,9 +123,10 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord
   smartystreets_ruby_sdk
-  sqlite3
+  sqlite3 (~> 1.3.6)
   thin
   tux
+  tzinfo
 
 BUNDLED WITH
-   1.16.1
+   1.17.2
