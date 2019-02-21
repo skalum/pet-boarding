@@ -25,4 +25,8 @@ class Sitter < User
     end
   end
 
+  def get_rate
+    rate
+  end
+
 end
