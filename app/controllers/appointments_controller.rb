@@ -17,7 +17,7 @@ class AppointmentsController < ApplicationController
       if current_user.class == Owner
         erb :'appointments/owners/new'
       else
-        erb :'appointments/sitters/new'
+        redirect "/appointments"
       end
     else
       redirect '/login'
@@ -29,7 +29,7 @@ class AppointmentsController < ApplicationController
       @appt = Appointment.find_by(id: params[:id])
       if @appt && current_user.appointments.include?(@appt) && current_user.class == Owner
         erb :'appointments/owners/show'
-      elsif @appt && current_user.appointments.include(@appt) && current_user.class == Sitter
+      elsif @appt && current_user.appointments.include?(@appt) && current_user.class == Sitter
         erb :'appointments/sitters/show'
       else
         redirect '/appointments'
