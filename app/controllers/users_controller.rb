@@ -10,9 +10,8 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
-      binding.pry
       user = User.create(params[:user])
-      addr = Address.create(params[:address])
+      addr = Address.create(params[:address].merge(user_id: user.id))
       addr.correct_address
 
       session[:user_id] = user.id
