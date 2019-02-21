@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_215421) do
+ActiveRecord::Schema.define(version: 2019_02_20_220224) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "line_1"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2019_02_11_215421) do
     t.datetime "end_date_and_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "rate"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -57,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_215421) do
     t.string "last_name"
     t.string "time_zone", default: "UTC"
     t.string "timezone", default: "America/New_York"
+    t.decimal "rate"
   end
 
 end
