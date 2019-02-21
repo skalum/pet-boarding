@@ -26,7 +26,7 @@ class Sitter < User
   end
 
   def get_rate
-    rate
+    '%.2f' % rate
   end
 
 end
