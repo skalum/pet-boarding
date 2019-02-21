@@ -1,4 +1,7 @@
 class Appointment < ActiveRecord::Base
+  belongs_to :pet
+  belongs_to :sitter
+
   validates :start_date_and_time, presence: true
   validates :end_date_and_time, presence: true
 
@@ -7,7 +10,7 @@ class Appointment < ActiveRecord::Base
   end
 
   def revenue
-    days * rate
+    days * sitter.rate
   end
 
 end
