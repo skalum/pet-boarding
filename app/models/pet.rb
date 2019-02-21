@@ -4,7 +4,7 @@ class Pet < ActiveRecord::Base
   has_many :sitters, through: :appointments
 
   def age
-    now = Time.now.utc.to_date
+    now = Time.current.to_date
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 end
