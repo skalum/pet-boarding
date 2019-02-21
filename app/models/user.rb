@@ -10,7 +10,15 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :email, email: true
 
-  has_many :addresses
+  has_one :address
 
   has_secure_password
+
+  def name
+    first_name + " " + last_name
+  end
+
+  def get_rate
+    raise "rate not defined for #{self.class}"
+  end
 end
