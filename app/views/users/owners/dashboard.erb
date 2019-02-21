@@ -38,7 +38,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/appts">
+                <a class="nav-link" href="/appointments">
                   <span data-feather="calendar"></span>
                   Appointments
                 </a>
@@ -51,6 +51,13 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
           </div>
+          <h4>Owner</h4>
+          <address>
+            <strong><%= @owner.name %></strong><br>
+            <%= @owner.address.line_1 %><br>
+            <% if @owner.address.line_2 %><%= @owner.address.line_2 %><br><% end %>
+            <%= @owner.address.city %>, <%= @owner.address.state %> <%= @owner.address.zip %>
+          </address>
         </main>
       </div>
     </div>
