@@ -39,7 +39,7 @@
                 <label for="sitter">Sitter</label>
                 <select class="form-control" id="pet" name="appt[sitter_id]" required>
                   <% Sitter.all.each do |sitter| %>
-                        <option value="<%= sitter.id %>" id="<%= sitter.name %>"><%= sitter.name %></option>
+                        <option value="<%= sitter.id %>" id="<%= sitter.name %>"><%= sitter.name %> ($<%= sitter.get_rate %> per day)</option>
                   <% end %>
                 </select>
                 <div class="invalid-feedback">

@@ -8,6 +8,7 @@ ActiveRecord::Base.establish_connection(
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
 
-require 'tzinfo'
+Time.zone = Time.current.zone
+ActiveRecord::Base.default_timezone = :local
 
 require_all 'app'
