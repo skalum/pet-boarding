@@ -12,7 +12,6 @@ gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem 'smartystreets_ruby_sdk'
-gem 'tzinfo'
 
 group :test do
   gem 'rspec'
