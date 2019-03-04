@@ -29,6 +29,8 @@ class PetsController < ApplicationController
       @pet = Pet.find_by(id: params[:id])
       if @pet && current_user.class == Owner && current_user.pets.include?(@pet)
         erb :'pets/show'
+      elsif @pet && current_user.class == Sitter && current_user.pets.include?(@pet)
+        erb :'pets/show'
       else
         redirect '/pets'
       end
