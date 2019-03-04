@@ -58,7 +58,9 @@
             <% if @sitter.address.line_2 %><%= @sitter.address.line_2 %><br><% end %>
             <%= @sitter.address.city %>, <%= @sitter.address.state %> <%= @sitter.address.zip %>
           </address>
-          <strong>Rate:</strong> $<%= @sitter.get_rate %> per hour
+          <strong>Rate:</strong> $<%= '%.2f' % @sitter.rate %> per hour <br />
+          <strong>Future revenue:</strong> $<%= '%.2f' % @sitter.money_in_future %> <br />
+          <strong>Past revenue:</strong> $<%= '%.2f' % @sitter.money_in_past %> <br />
         </main>
       </div>
     </div>
