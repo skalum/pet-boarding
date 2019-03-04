@@ -62,6 +62,7 @@
                   <th scope="col">End Date</th>
                   <th scope="col">Length</th>
                   <th scope="col">Revenue</th>
+                  <th scope="col">View</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,7 +73,8 @@
                     <td><%= appointment.start_date_and_time %></td>
                     <td><%= appointment.end_date_and_time %></td>
                     <td><%= appointment.days %> days</td>
-                    <td>$<%= '%.2f' % appointment.revenue %>
+                    <td>$<%= '%.2f' % appointment.revenue %></td>
+                    <td><a href="/appointments/<%= appointment.id %>">View</a></td>
                   </tr>
                 <% end %>
               </tbody>
