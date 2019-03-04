@@ -3,9 +3,9 @@ class AppointmentsController < ApplicationController
   get '/appointments' do
     if logged_in?
       if current_user.class == Owner
-        erb :'appointments/owners/appointments'
+        erb :'appointments/owners/index'
       else
-        erb :'appointments/sitters/appointments'
+        erb :'appointments/sitters/index'
       end
     else
       redirect '/login'
