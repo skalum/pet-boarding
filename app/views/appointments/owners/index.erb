@@ -7,7 +7,7 @@
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../../css/dashboard.css" rel="stylesheet">
   </head>
 
   <body>
@@ -34,13 +34,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="/pets">
                   <span data-feather="gitlab"></span>
-                  Pets <span class="sr-only"></span>
+                  Pets
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="/appointments">
-                  <span data-feather="calendar">(current)</span>
-                  Appointments
+                  <span data-feather="calendar"></span>
+                  Appointments <span class="sr-only">(current)</span>
                 </a>
               </li>
             </ul>
@@ -61,7 +61,7 @@
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
                   <th scope="col">Length</th>
-                  <th scope="col">Edit</th>
+                  <th scope="col">View</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,7 +72,7 @@
                     <td><%= appointment.start_date_and_time %></td>
                     <td><%= appointment.end_date_and_time %></td>
                     <td><%= appointment.days %> days</td>
-                    <td><a href="/appointments/<%= appointment.id %>/edit">Edit</td>
+                    <td><a href="/appointments/<%= appointment.id %>">View</td>
                   </tr>
                 <% end %>
               </tbody>
