@@ -3,9 +3,9 @@ class PetsController < ApplicationController
   get '/pets' do
     if logged_in?
       if current_user.class == Owner
-        erb :'pets/pets'
+        erb :'pets/index'
       else
-        redirect '/dashboard'
+        redirect '/home'
       end
     else
       redirect '/login'
