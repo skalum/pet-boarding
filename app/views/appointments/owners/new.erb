@@ -26,7 +26,7 @@
             <div class="mb-3">
                 <label for="pet">Pet</label>
                 <select class="form-control" id="pet" name="appt[pet_id]" required>
-                  <% Pet.all.each do |pet| %>
+                  <% current_user.pets.each do |pet| %>
                         <option value="<%= pet.id %>" id="<%= pet.name %>"><%= pet.name %></option>
                   <% end %>
                 </select>
