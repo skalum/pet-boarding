@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_220224) do
     t.string "last_name"
     t.string "time_zone", default: "UTC"
     t.string "timezone", default: "America/New_York"
-    t.decimal "rate"
+    t.decimal "rate", default: "0.0"
   end
 
 end
