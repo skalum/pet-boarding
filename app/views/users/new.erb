@@ -103,14 +103,6 @@
                 </div>
               </div>
             </div>
-            <div class="mb-3">
-              <label for="timezone">Time zone</label>
-              <select class="form-control" id="timezone" name="user[timezone]" required>
-                <% TZInfo::Country.get('US').zone_info.each do |timezone| %>
-                  <option value="<%= timezone.identifier %>"><%= timezone.description %></option>
-                <% end %>
-              </select>
-            </div>
 
             <hr class="mb-4">
 
