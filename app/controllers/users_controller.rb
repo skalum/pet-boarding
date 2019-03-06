@@ -11,8 +11,12 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       user = User.create(params[:user])
-      addr = user.create_address(params[:address])
-      addr.correct_address
+      if user
+        addr = user.create_address(params[:address])
+        addr.correct_address
+      else
+        redirect 'signup'
+      end
 
       session[:user_id] = user.id
       redirect '/home'
