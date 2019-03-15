@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       user = User.create(params[:user])
-      if user
+      if user.save
         addr = user.create_address(params[:address])
         addr.correct_address
       else
